@@ -9,7 +9,7 @@ const getPwaRaw = (options) => {
       oneSignalSDK:
         "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js",
       oneSignalConfig: {
-        appId: "<appId>"
+        appId: "43495d43-a969-4458-a957-3246c25eadf2"
       }
     },
     options || {}
