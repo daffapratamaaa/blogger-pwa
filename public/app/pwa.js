@@ -54,8 +54,8 @@ if (typeof Lazy !== "function") {
         logs.push(["Script: " + registration.active.scriptURL]);
       }
       logs.push(
-        ["Build by: Fineshop Design"],
-        ["Developer site: https://fineshopdesign.com"]
+        ["Build by: Daffa Pratama Nur Ardiansyah"],
+        ["Developer site: https://www.daffapratama.com"]
       );
 
       groupLog(
