@@ -5,7 +5,7 @@ const getPwaRaw = (options) => {
     {
       consoleLogs: true,
       serviceWorker: "/serviceworker.js",
-      oneSignalEnabled: false,
+      oneSignalEnabled: true,
       oneSignalSDK:
         "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js",
       oneSignalConfig: {
