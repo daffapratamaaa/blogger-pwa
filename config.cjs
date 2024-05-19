@@ -1,8 +1,8 @@
 /** @type {import("./types").Config} */
 const config = {
   version: "1.0",
-  name: "My Blog",
-  shortName: "My Blog",
+  name: "Daffa Pratama Nur Ardiansyah",
+  shortName: "Daffa Pratama",
   description: "My blog description goes here...",
   direction: "auto",
   language: "en-US",
@@ -31,9 +31,9 @@ const config = {
   ],
   pwa: {
     consoleLogs: true,
-    oneSignalEnabled: false,
+    oneSignalEnabled: true,
     oneSignalConfig: {
-      appId: "********-****-****-****-************",
+      appId: "43495d43-a969-4458-a957-3246c25eadf2",
       allowLocalhostAsSecureOrigin: true
     }
   }
