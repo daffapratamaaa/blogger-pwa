@@ -1,7 +1,7 @@
 {
-  "name": "My Blog",
-  "short_name": "My Blog",
-  "description": "My blog description goes here...",
+  "name": "Daffa Pratama Nur Ardiansyah",
+  "short_name": "Daffa Pratama",
+  "description": "Mencatat perjalanan hidup dengan kata-kata, menyimpan setiap momen dalam kalimat-kalimat penuh warna.",
   "version": "1.0",
   "dir": "auto",
   "lang": "en-US",
@@ -98,32 +98,6 @@
       "src": "screenshots/screen-5.png",
       "type": "image/png",
       "sizes": "540x720"
-    }
-  ],
-  "shortcuts": [
-    {
-      "name": "My Shortcut 1",
-      "short_name": "My Shortcut 1",
-      "description": "My Shortcut 1 description goes here...",
-      "url": "/search/label/my-shortcut-1?utm_source=homescreen",
-      "icons": [
-        {
-          "src": "icons/android-chrome-192x192.png",
-          "sizes": "192x192"
-        }
-      ]
-    },
-    {
-      "name": "My Shortcut 2",
-      "short_name": "My Shortcut 2",
-      "description": "My Shortcut 2 description goes here...",
-      "url": "/search/label/my-shortcut-2?utm_source=homescreen",
-      "icons": [
-        {
-          "src": "icons/android-chrome-192x192.png",
-          "sizes": "192x192"
-        }
-      ]
     }
   ],
   "serviceworker": {
