@@ -167,7 +167,7 @@ if (typeof Lazy !== "function") {
 })({
   "consoleLogs": true,
   "serviceWorker": "/app/serviceworker.js",
-  "oneSignalEnabled": false,
+  "oneSignalEnabled": true,
   "oneSignalSDK": "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js",
   "oneSignalConfig": {
     "appId": "43495d43-a969-4458-a957-3246c25eadf2",
