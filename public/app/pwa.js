@@ -1,6 +1,6 @@
 if (typeof Lazy !== "function") {
   /**
-   * Lazy Function by Fineshop Design
+   * Lazy Function
    * uses HTML5 localStorage
    *
    * License: MIT
@@ -8,13 +8,22 @@ if (typeof Lazy !== "function") {
   (function(e) {
     var t = [];
 
-    function n(e) { "function" == typeof e && (n.lazied || t.executed ? e.call(window, { type: "LOCAL_STORAGE" }) : t.push(e)) }
+    function n(e) { 
+      "function" == typeof e && (n.lazied || t.executed ? e.call(window, { type: "LOCAL_STORAGE" }) : t.push(e)) 
+    }
 
-    function o() { 0 == document.documentElement.scrollTop && 0 == document.body.scrollTop || (t.execute({ type: "SCROLL" }), window.removeEventListener("scroll", o)) }
+    function o() { 
+      0 == document.documentElement.scrollTop && 0 == document.body.scrollTop || (t.execute({ type: "SCROLL" }), window.removeEventListener("scroll", o)) 
+    }
 
-    function c() { t.execute({ type: "CLICK" }), document.body.removeEventListener("click", c) }
+    function c() { 
+      t.execute({ type: "CLICK" }), document.body.removeEventListener("click", c) 
+    }
 
-    function d() { n.lazied || t.executed || (document.body.addEventListener("click", c), window.addEventListener("scroll", o), o()), document.removeEventListener("DOMContentLoaded", d) } 
+    function d() { 
+      n.lazied || t.executed || (document.body.addEventListener("click", c), window.addEventListener("scroll", o), o()), document.removeEventListener("DOMContentLoaded", d) 
+    }
+
     t.executed = !1, n.lazied = localStorage.getItem(e.key) === e.value, t.execute = function() { 
       if (!1 === this.executed) { 
         this.executed = !0, n.lazied = !0, localStorage.getItem(e.key) !== e.value && localStorage.setItem(e.key, e.value); 
@@ -22,8 +31,7 @@ if (typeof Lazy !== "function") {
           "function" == typeof this[e] && this[e].apply(window, arguments), this.splice(e, 1), e-- 
         } 
       } 
-    }, 
-    "complete" === document.readyState || "loading" !== document.readyState || null !== document.body ? d() : document.addEventListener("DOMContentLoaded", d), 
+    }, "complete" === document.readyState || "loading" !== document.readyState || null !== document.body ? d() : document.addEventListener("DOMContentLoaded", d), 
     this[e.name] = n
   }).call(typeof globalThis !== "undefined" ? globalThis : window, { name: "Lazy", key: "LOCAL_LAZY", value: "true" });
 }
@@ -157,17 +165,14 @@ if (typeof Lazy !== "function") {
      * Load OneSignal SDK only if required
      * Uses Lazy to lazyload javascript for better performance
      *
-     * @see https://www.fineshopdesign.com/2023/04/lazyloading-javascript.html
      */
     if (typeof OneSignal === "undefined") {
       Lazy(function() {
         var script = document.createElement("script");
         script.type = "text/javascript"; // Ensure the script is treated as regular JavaScript
-        Object.assign(script, {
-          src: app.oneSignalSDK,
-          async: true,
-          defer: true
-        });
+        script.src = app.oneSignalSDK;
+        script.async = true;
+        script.defer = true;
         var firstScript = document.getElementsByTagName("script")[0];
         if (firstScript && firstScript.parentNode) {
           firstScript.parentNode.insertBefore(script, firstScript);
