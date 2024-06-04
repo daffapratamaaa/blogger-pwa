@@ -1,9 +1,9 @@
 if (typeof Lazy !== "function") {
   /**
-   * Lazy Function
-   * uses HTML5 localStorage
+   * Fungsi Lazy
+   * menggunakan HTML5 localStorage
    *
-   * License: MIT
+   * Lisensi: MIT
    */
   (function(e) {
     var t = [];
@@ -38,15 +38,15 @@ if (typeof Lazy !== "function") {
 
 (function(app) {
   /**
-   * Return from function
-   * if serviceWorker is not available
+   * Keluar dari fungsi
+   * jika serviceWorker tidak tersedia
    */
   if (!("serviceWorker" in navigator)) {
     return;
   }
 
   /**
-   * Helper function to group logs
+   * Fungsi pembantu untuk mengelompokkan log
    */
   var groupLog = function(title, logs) {
     if (app.consoleLogs === true) {
@@ -57,7 +57,7 @@ if (typeof Lazy !== "function") {
   };
 
   /**
-   * Register Workbox Service Worker
+   * Daftarkan Workbox Service Worker
    */
   navigator.serviceWorker
     .register(app.serviceWorker, {
@@ -95,7 +95,7 @@ if (typeof Lazy !== "function") {
     });
 
   /**
-   * Helper function to initialize OneSignal
+   * Fungsi pembantu untuk menginisialisasi OneSignal
    */
   var initializeOneSignal = function(config) {
     return function(OneSignal) {
@@ -152,7 +152,7 @@ if (typeof Lazy !== "function") {
   };
 
   /**
-   * Initialize OneSignal if enabled
+   * Inisialisasi OneSignal jika diaktifkan
    */
   if (app.oneSignalEnabled) {
     var oneSignalConfig = Object.assign({}, app.oneSignalConfig);
@@ -162,14 +162,14 @@ if (typeof Lazy !== "function") {
     );
 
     /**
-     * Load OneSignal SDK only if required
-     * Uses Lazy to lazyload javascript for better performance
+     * Muat OneSignal SDK hanya jika diperlukan
+     * Menggunakan Lazy untuk memuat javascript secara malas demi performa yang lebih baik
      *
      */
     if (typeof OneSignal === "undefined") {
       Lazy(function() {
         var script = document.createElement("script");
-        script.type = "text/javascript"; // Ensure the script is treated as regular JavaScript
+        script.type = "text/javascript"; // Pastikan script dianggap sebagai JavaScript biasa
         script.src = app.oneSignalSDK;
         script.async = true;
         script.defer = true;
