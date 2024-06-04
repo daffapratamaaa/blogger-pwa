@@ -14,7 +14,17 @@ if (typeof Lazy !== "function") {
 
     function c() { t.execute({ type: "CLICK" }), document.body.removeEventListener("click", c) }
 
-    function d() { n.lazied || t.executed || (document.body.addEventListener("click", c), window.addEventListener("scroll", o), o()), document.removeEventListener("DOMContentLoaded", d) } t.executed = !1, n.lazied = localStorage.getItem(e.key) === e.value, t.execute = function() { if (!1 === this.executed) { this.executed = !0, n.lazied = !0, localStorage.getItem(e.key) !== e.value && localStorage.setItem(e.key, e.value); for (let e = 0; e < this.length; e++) "function" == typeof this[e] && this[e].apply(window, arguments), this.splice(e, 1), e-- } }, "complete" === document.readyState || "loading" !== document.readyState || null !== document.body ? d() : document.addEventListener("DOMContentLoaded", d), this[e.name] = n
+    function d() { n.lazied || t.executed || (document.body.addEventListener("click", c), window.addEventListener("scroll", o), o()), document.removeEventListener("DOMContentLoaded", d) } 
+    t.executed = !1, n.lazied = localStorage.getItem(e.key) === e.value, t.execute = function() { 
+      if (!1 === this.executed) { 
+        this.executed = !0, n.lazied = !0, localStorage.getItem(e.key) !== e.value && localStorage.setItem(e.key, e.value); 
+        for (let e = 0; e < this.length; e++) {
+          "function" == typeof this[e] && this[e].apply(window, arguments), this.splice(e, 1), e-- 
+        } 
+      } 
+    }, 
+    "complete" === document.readyState || "loading" !== document.readyState || null !== document.body ? d() : document.addEventListener("DOMContentLoaded", d), 
+    this[e.name] = n
   }).call(typeof globalThis !== "undefined" ? globalThis : window, { name: "Lazy", key: "LOCAL_LAZY", value: "true" });
 }
 
@@ -30,13 +40,13 @@ if (typeof Lazy !== "function") {
   /**
    * Helper function to group logs
    */
-  const groupLog = (title, logs) => {
+  const groupLog = function(title, logs) {
     if (app.consoleLogs === true) {
       console.groupCollapsed.apply(console, Array.isArray(title) ? title : [title]);
-      logs.forEach(log => console.log.apply(console, Array.isArray(log) ? log : [log]));
+      logs.forEach(function(log) { console.log.apply(console, Array.isArray(log) ? log : [log]); });
       console.groupEnd();
     }
-  }
+  };
 
   /**
    * Register Workbox Service Worker
@@ -45,8 +55,8 @@ if (typeof Lazy !== "function") {
     .register(app.serviceWorker, {
       scope: "/",
     })
-    .then((registration) => {
-      const logs = [];
+    .then(function(registration) {
+      var logs = [];
       if (registration.scope) {
         logs.push(["Scope: " + registration.scope]);
       }
@@ -66,7 +76,7 @@ if (typeof Lazy !== "function") {
         logs
       );
     })
-    .catch((error) => {
+    .catch(function(error) {
       groupLog(
         [
           "%cService Worker: Registration Failed",
@@ -79,56 +89,58 @@ if (typeof Lazy !== "function") {
   /**
    * Helper function to initialize OneSignal
    */
-  const initializeOneSignal = (config) => (OneSignal) => {
-    OneSignal.init(config)
-      .then(() => {
-        const logs = [
-          ["Version:", OneSignal.VERSION]
-        ];
+  const initializeOneSignal = function(config) {
+    return function(OneSignal) {
+      OneSignal.init(config)
+        .then(function() {
+          var logs = [
+            ["Version:", OneSignal.VERSION]
+          ];
 
-        const config = OneSignal.config;
-        const subscription = OneSignal.User.PushSubscription;
-        const notification = OneSignal.Notifications;
-        const origin = window.location.origin;
+          var config = OneSignal.config;
+          var subscription = OneSignal.User.PushSubscription;
+          var notification = OneSignal.Notifications;
+          var origin = window.location.origin;
 
-        if (config) {
-          logs.push(["App ID:", config.appId]);
-          logs.push(["Origin:", config.origin]);
-          logs.push(["Site Name:", config.siteName]);
+          if (config) {
+            logs.push(["App ID:", config.appId]);
+            logs.push(["Origin:", config.origin]);
+            logs.push(["Site Name:", config.siteName]);
 
-          const userConfig = config.userConfig;
+            var userConfig = config.userConfig;
 
-          if (userConfig) {
-            if (userConfig.serviceWorkerParam) {
-              logs.push(["Scope:", origin + userConfig.serviceWorkerParam.scope]);
+            if (userConfig) {
+              if (userConfig.serviceWorkerParam) {
+                logs.push(["Scope:", origin + userConfig.serviceWorkerParam.scope]);
+              }
+              logs.push(["Script:", origin + userConfig.path + userConfig.serviceWorkerPath]);
             }
-            logs.push(["Script:", origin + userConfig.path + userConfig.serviceWorkerPath]);
           }
-        }
 
-        if (subscription.id) {
-          logs.push(["Subscription ID:", subscription.id]);
-        }
+          if (subscription.id) {
+            logs.push(["Subscription ID:", subscription.id]);
+          }
 
-        logs.push(["Notification:", notification.permissionNative]);
+          logs.push(["Notification:", notification.permissionNative]);
 
-        groupLog(
-          [
-            "%cOneSignal: Initialized Successfully",
-            "color: green"
-          ],
-          logs
-        );
-      })
-      .catch((error) => {
-        groupLog(
-          [
-            "%cOneSignal: Initialization Failed",
-            "color: red"
-          ],
-          ["Error:", error]
-        );
-      });
+          groupLog(
+            [
+              "%cOneSignal: Initialized Successfully",
+              "color: green"
+            ],
+            logs
+          );
+        })
+        .catch(function(error) {
+          groupLog(
+            [
+              "%cOneSignal: Initialization Failed",
+              "color: red"
+            ],
+            ["Error:", error]
+          );
+        });
+    };
   };
 
   /**
@@ -137,7 +149,7 @@ if (typeof Lazy !== "function") {
   if (app.oneSignalEnabled) {
     const oneSignalConfig = Object.assign({}, app.oneSignalConfig);
     window.OneSignalDeferred = window.OneSignalDeferred || [];
-    OneSignalDeferred.push(
+    window.OneSignalDeferred.push(
       initializeOneSignal(oneSignalConfig)
     );
 
@@ -145,17 +157,16 @@ if (typeof Lazy !== "function") {
      * Load OneSignal SDK only if required
      * Uses Lazy to lazyload javascript for better performance
      *
-     * @see https://www.fineshopdesign.com/2023/04/lazyloading-javascript.html
      */
     if (typeof OneSignal === "undefined") {
-      Lazy(() => {
-        const script = document.createElement("script");
+      Lazy(function() {
+        var script = document.createElement("script");
         Object.assign(script, {
           src: app.oneSignalSDK,
           async: true,
           defer: true
         });
-        const firstScript = document.getElementsByTagName("script")[0];
+        var firstScript = document.getElementsByTagName("script")[0];
         if (firstScript && firstScript.parentNode) {
           firstScript.parentNode.insertBefore(script, firstScript);
         } else {
@@ -173,4 +184,4 @@ if (typeof Lazy !== "function") {
     "appId": "43495d43-a969-4458-a957-3246c25eadf2",
     "allowLocalhostAsSecureOrigin": true
   }
-})
+});
