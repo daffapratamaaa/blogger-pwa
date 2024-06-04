@@ -40,7 +40,7 @@ if (typeof Lazy !== "function") {
   /**
    * Helper function to group logs
    */
-  const groupLog = function(title, logs) {
+  var groupLog = function(title, logs) {
     if (app.consoleLogs === true) {
       console.groupCollapsed.apply(console, Array.isArray(title) ? title : [title]);
       logs.forEach(function(log) { console.log.apply(console, Array.isArray(log) ? log : [log]); });
@@ -89,7 +89,7 @@ if (typeof Lazy !== "function") {
   /**
    * Helper function to initialize OneSignal
    */
-  const initializeOneSignal = function(config) {
+  var initializeOneSignal = function(config) {
     return function(OneSignal) {
       OneSignal.init(config)
         .then(function() {
@@ -147,7 +147,7 @@ if (typeof Lazy !== "function") {
    * Initialize OneSignal if enabled
    */
   if (app.oneSignalEnabled) {
-    const oneSignalConfig = Object.assign({}, app.oneSignalConfig);
+    var oneSignalConfig = Object.assign({}, app.oneSignalConfig);
     window.OneSignalDeferred = window.OneSignalDeferred || [];
     window.OneSignalDeferred.push(
       initializeOneSignal(oneSignalConfig)
@@ -157,10 +157,12 @@ if (typeof Lazy !== "function") {
      * Load OneSignal SDK only if required
      * Uses Lazy to lazyload javascript for better performance
      *
+     * @see https://www.fineshopdesign.com/2023/04/lazyloading-javascript.html
      */
     if (typeof OneSignal === "undefined") {
       Lazy(function() {
         var script = document.createElement("script");
+        script.type = "text/javascript"; // Ensure the script is treated as regular JavaScript
         Object.assign(script, {
           src: app.oneSignalSDK,
           async: true,
