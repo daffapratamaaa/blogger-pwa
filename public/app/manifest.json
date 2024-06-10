@@ -1,11 +1,9 @@
 {
   "name": "Daffa Pratama Nur Ardiansyah",
   "short_name": "Daffa Pratama",
-  "description": "Mencatat perjalanan hidup dengan kata-kata, menyimpan setiap momen dalam kalimat-kalimat penuh warna.",
-  "version": "1.0",
+  "version": "1.1",
   "dir": "auto",
   "lang": "en-US",
-  "orientation": "any",
   "start_url": "/?utm_source=homescreen",
   "scope": "/",
   "display": "standalone",
