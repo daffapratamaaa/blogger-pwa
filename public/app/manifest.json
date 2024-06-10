@@ -1,14 +1,14 @@
 {
   "name": "Daffa Pratama Nur Ardiansyah",
   "short_name": "Daffa Pratama",
-  "version": "1.1",
-  "dir": "auto",
-  "lang": "en-US",
+  "version": "2.0",
   "start_url": "/?utm_source=homescreen",
   "scope": "/",
   "display": "standalone",
   "prefer_related_applications": false,
-  "background_color": "#fff",
+  "background_color": "rgba(255, 255, 255, 0.5)",
+  "blur": true,
+  "blur_amount": "10px",
   "theme_color": "#fff",
   "icons": [
     {
