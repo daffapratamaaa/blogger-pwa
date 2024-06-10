@@ -6,10 +6,8 @@
   "scope": "/",
   "display": "standalone",
   "prefer_related_applications": false,
-  "background_color": "rgba(255, 255, 255, 0.5)",
-  "blur": true,
-  "blur_amount": "10px",
-  "theme_color": "#fff",
+  "background_color": "#f3f5fe",
+  "theme_color": "#f3f5fe",
   "icons": [
     {
       "src": "icons/favicon.ico",
